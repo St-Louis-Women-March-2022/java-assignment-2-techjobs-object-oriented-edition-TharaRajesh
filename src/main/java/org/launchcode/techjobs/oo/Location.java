@@ -17,6 +17,8 @@ public class Location extends JobField{
     //  constructor should also call the empty constructor in order to initialize the 'id' field.
     public Location(String value) {
         this();
+        if(value == "")
+            value ="Data not available";
         this.value = value;
     }
 

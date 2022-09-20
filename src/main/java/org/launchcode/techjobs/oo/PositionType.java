@@ -15,6 +15,8 @@ public class PositionType extends JobField{
 
     public PositionType(String value) {
         this();
+        if(value == "")
+            value ="Data not available";
         this.value = value;
     }
 

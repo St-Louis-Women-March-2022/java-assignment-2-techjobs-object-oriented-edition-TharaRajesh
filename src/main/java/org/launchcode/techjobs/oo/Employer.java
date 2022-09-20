@@ -15,6 +15,8 @@ public class Employer extends JobField{
 
     public Employer(String value) {
         this();
+        if(value == "")
+            value ="Data not available";
         this.value = value;
     }
 

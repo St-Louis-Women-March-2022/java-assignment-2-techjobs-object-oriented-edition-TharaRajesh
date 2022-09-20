@@ -15,6 +15,8 @@ public class CoreCompetency extends JobField{
 
     public CoreCompetency(String value) {
         this();
+        if(value == "")
+            value ="Data not available";
         this.value = value;
     }
     @Override

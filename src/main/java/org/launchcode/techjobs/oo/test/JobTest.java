@@ -42,8 +42,10 @@ public void testJobConstructorSetsAllFields(){
 
 @Test
 public void testJobsForEquality(){
+    Job job1 = new Job("Product tester", new Employer("ACME"), new Location("Desert"), new PositionType("Quality control"), new CoreCompetency("Persistence"));
+    Job job2 = new Job("Web Developer", new Employer("LaunchCode"), new Location("St. Louis"), new PositionType("Front-end developer"), new CoreCompetency("JavaScript"));
 
-  assertFalse(1==1);
+    assertFalse(job1 == job2);
 }
   @Test
 public void testToStringStartsAndEndsWithNewLine(){
@@ -58,22 +60,28 @@ public void testToStringStartsAndEndsWithNewLine(){
  public void testToStringContainsCorrectLabelsAndData(){
    Job job = new Job("Ice cream tester", new Employer("XYZ Company"), new Location("Home"), new PositionType("UX"), new CoreCompetency("Tasting ability"));
    String jobDetails = job.toString();
-   String expectedJobDetails ="\nid:5\n" +
-           "name: Ice cream tester\n" +
-           "employer: XYZ Company\n" +
-           "location: Home\n" +
-           "positionType: UX\n" +
-           "coreCompetency: Tasting ability\n";
+   String expectedJobDetails ="\nID: " + job.getId()+"\n" +
+           "Name: Ice cream tester\n" +
+           "Employer: XYZ Company\n" +
+           "Location: Home\n" +
+           "Position Type: UX\n" +
+           "Core Competency: Tasting ability\n";
 
   assertEquals(expectedJobDetails, job.toString());
 
  }
  @Test
   public void testToStringHandlesEmptyField(){
-     Job job1 = new Job("Ice cream tester", new Employer(""), new Location("Home"), new PositionType("UX"), new CoreCompetency("Tasting ability"));
-     assertEquals("", job1.getEmployer().toString());
-     Job job2 = new Job("Ice cream tester", new Employer("XYZ Company"), new Location("Home"), new PositionType("UX"), new CoreCompetency("Tasting ability"));
-     String jobItems = job2.toString();
-     assertEquals(jobItems, job2.toString());
+     Job jobWithEmptyField = new Job("Ice cream tester", new Employer(""), new Location("Home"), new PositionType("UX"), new CoreCompetency("Tasting ability"));
+
+     String expectedJobDetails ="\nID: " + jobWithEmptyField.getId()+"\n" +
+             "Name: Ice cream tester\n" +
+             "Employer: Data not available\n" +
+             "Location: Home\n" +
+             "Position Type: UX\n" +
+             "Core Competency: Tasting ability\n";
+
+     assertEquals(expectedJobDetails, jobWithEmptyField.toString());
+
  }
 }
